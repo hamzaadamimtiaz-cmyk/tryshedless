@@ -280,26 +280,26 @@
   <div class="signup-inner">
     <h2 class="signup-title">Apply to join the Shedless network</h2>
     <p class="signup-sub">Free for the first 3 months. We'll be in touch within 24 hours.</p>
-    <div class="signup-form" id="signupForm">
+    <form class="signup-form" id="signupForm" action="https://formspree.io/f/xnjwrzwn" method="POST">
       <div class="form-row">
-        <input type="text" id="salonName" placeholder="Salon name" />
-        <input type="text" id="ownerName" placeholder="Your name" />
+        <input type="text" name="salon_name" id="salonName" placeholder="Salon name" required />
+        <input type="text" name="owner_name" id="ownerName" placeholder="Your name" required />
       </div>
       <div class="form-row">
-        <input type="email" id="ownerEmail" placeholder="Email address" />
-        <input type="tel" id="ownerPhone" placeholder="Phone number" />
+        <input type="email" name="email" id="ownerEmail" placeholder="Email address" required />
+        <input type="tel" name="phone" id="ownerPhone" placeholder="Phone number" required />
       </div>
-      <input type="text" id="salonArea" placeholder="Neighbourhood / area in LA" />
-      <select id="salonSize">
+      <input type="text" name="area" id="salonArea" placeholder="Neighbourhood / area in LA" />
+      <select name="team_size" id="salonSize">
         <option value="" disabled selected>How many groomers do you have?</option>
         <option>Just me (solo)</option>
         <option>2–3 groomers</option>
         <option>4–6 groomers</option>
         <option>7+ groomers</option>
       </select>
-      <button class="signup-btn" onclick="handleSignup()">Submit application</button>
+      <button type="submit" class="signup-btn">Submit application</button>
       <p class="signup-note">No contracts. No setup fees. Cancel anytime.</p>
-    </div>
+    </form>
     <div class="signup-success" id="signupSuccess">
       <div class="signup-success-icon">✓</div>
       <div class="signup-success-title">Application received!</div>
@@ -319,14 +319,14 @@
       <a href="/">For pet owners</a>
       <a href="#why">Why join</a>
       <a href="#how">How it works</a>
-      <a href="mailto:partners@tryshedless.com">partners@tryshedless.com</a>
     </div>
     <p class="footer-copy">© 2026 Shedless · Los Angeles, CA · All rights reserved</p>
   </div>
 </footer>
 
 <script>
-  function handleSignup() {
+  document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
     const salon = document.getElementById('salonName').value.trim();
     const email = document.getElementById('ownerEmail').value.trim();
     const phone = document.getElementById('ownerPhone').value.trim();
@@ -335,9 +335,17 @@
     if (!email || !email.includes('@')) { document.getElementById('ownerEmail').style.borderColor = '#E24B4A'; valid = false; }
     if (!phone) { document.getElementById('ownerPhone').style.borderColor = '#E24B4A'; valid = false; }
     if (!valid) return;
-    document.getElementById('signupForm').style.display = 'none';
-    document.getElementById('signupSuccess').style.display = 'block';
-  }
+    const data = new FormData(this);
+    fetch('https://formspree.io/f/xnjwrzwn', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+      .then(() => {
+        document.getElementById('signupForm').style.display = 'none';
+        document.getElementById('signupSuccess').style.display = 'block';
+      })
+      .catch(() => {
+        document.getElementById('signupForm').style.display = 'none';
+        document.getElementById('signupSuccess').style.display = 'block';
+      });
+  });
 </script>
 </body>
 </html>
