@@ -330,17 +330,17 @@
   <div class="waitlist-inner">
     <h2 class="waitlist-title">Get early access in LA</h2>
     <p class="waitlist-sub">Join the waitlist and be first when Shedless launches in your neighbourhood</p>
-    <div class="waitlist-form">
+    <form class="waitlist-form" id="waitlistForm" action="https://formspree.io/f/xrejdljz" method="POST">
       <div class="waitlist-row">
-        <input type="text" id="waitlistName" class="waitlist-input" placeholder="Your name" />
-        <input type="email" id="waitlistEmail" class="waitlist-input" placeholder="Email address" />
+        <input type="text" name="name" id="waitlistName" class="waitlist-input" placeholder="Your name" required />
+        <input type="email" name="email" id="waitlistEmail" class="waitlist-input" placeholder="Email address" required />
       </div>
       <div style="position:relative;">
-        <input type="tel" id="waitlistPhone" class="waitlist-input" placeholder="Phone number" style="padding-right:80px;" />
+        <input type="tel" name="phone" id="waitlistPhone" class="waitlist-input" placeholder="Phone number" style="padding-right:80px;" />
         <span class="waitlist-opt">Optional</span>
       </div>
-      <button class="waitlist-btn" onclick="handleWaitlist()">Join waitlist</button>
-    </div>
+      <button type="submit" class="waitlist-btn">Join waitlist</button>
+    </form>
     <div class="waitlist-success" id="waitlistSuccess">You're on the list! We'll be in touch when Shedless launches near you.</div>
     <p class="waitlist-note">No spam. Just a launch notification when we go live in your area.</p>
   </div>
@@ -357,7 +357,6 @@
       <a href="#how">How it works</a>
       <a href="#plans">Pricing</a>
       <a href="/partners">Salon partners</a>
-      <a href="mailto:hello@tryshedless.com">hello@tryshedless.com</a>
     </div>
     <p class="footer-copy">© 2026 Shedless · Los Angeles, CA · All rights reserved</p>
   </div>
@@ -461,26 +460,54 @@
     if (!email || !email.includes('@')) { document.getElementById('mEmail').style.borderColor = '#E24B4A'; valid = false; }
     if (!zip) { document.getElementById('mZip').style.borderColor = '#E24B4A'; valid = false; }
     if (!valid) return;
-    intentCount++;
-    document.getElementById('intentCount').textContent = intentCount;
-    document.getElementById('modalForm').style.display = 'none';
-    document.getElementById('modalSuccess').style.display = 'block';
+    const phone = document.getElementById('mPhone').value.trim();
+    const breed = document.getElementById('mBreed').value;
+    const multiDog = document.getElementById('mExtra').checked;
+    const planLabel = document.getElementById('modalPlanLabel').textContent;
+    const total = document.getElementById('mTotal').textContent;
+    const data = new FormData();
+    data.append('name', name);
+    data.append('email', email);
+    data.append('phone', phone);
+    data.append('zip', zip);
+    data.append('breed', breed);
+    data.append('plan', planLabel);
+    data.append('total', total);
+    data.append('multi_dog', multiDog ? 'Yes' : 'No');
+    fetch('https://formspree.io/f/xrejdljz', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+      .then(() => {
+        intentCount++;
+        document.getElementById('intentCount').textContent = intentCount;
+        document.getElementById('modalForm').style.display = 'none';
+        document.getElementById('modalSuccess').style.display = 'block';
+      })
+      .catch(() => {
+        intentCount++;
+        document.getElementById('intentCount').textContent = intentCount;
+        document.getElementById('modalForm').style.display = 'none';
+        document.getElementById('modalSuccess').style.display = 'block';
+      });
   }
 
-  function handleWaitlist() {
+  document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+    e.preventDefault();
     const name = document.getElementById('waitlistName').value.trim();
-    const input = document.getElementById('waitlistEmail');
-    const success = document.getElementById('waitlistSuccess');
-    const email = input.value.trim();
+    const email = document.getElementById('waitlistEmail').value.trim();
     let valid = true;
     if (!name) { document.getElementById('waitlistName').style.borderColor = '#E24B4A'; valid = false; }
-    if (!email || !email.includes('@')) { input.style.borderColor = '#E24B4A'; valid = false; }
-    if (!valid) { input.focus(); return; }
-    document.getElementById('waitlistName').value = '';
-    input.value = '';
-    document.getElementById('waitlistPhone').value = '';
-    success.style.display = 'block';
-  }
+    if (!email || !email.includes('@')) { document.getElementById('waitlistEmail').style.borderColor = '#E24B4A'; valid = false; }
+    if (!valid) return;
+    const data = new FormData(this);
+    fetch('https://formspree.io/f/xrejdljz', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+      .then(() => {
+        document.getElementById('waitlistForm').style.display = 'none';
+        document.getElementById('waitlistSuccess').style.display = 'block';
+      })
+      .catch(() => {
+        document.getElementById('waitlistForm').style.display = 'none';
+        document.getElementById('waitlistSuccess').style.display = 'block';
+      });
+  });
 </script>
 </body>
 </html>
