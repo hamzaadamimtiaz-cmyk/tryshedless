@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shedless for Salons — Fill Your Empty Chairs. Zero Marketing Spend.</title>
+<meta name="description" content="Join the Shedless network and get guaranteed monthly bookings for your slow slots. Free to join. You set your own capacity."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --lime: #6DBF2E;
+    --lime-dark: #4a9c1a;
+    --lime-light: #EAF3DE;
+    --charcoal: #1a1f1a;
+    --charcoal-2: #2a2f2a;
+    --charcoal-3: #3a3f3a;
+    --text-on-dark: #a0a8a0;
+    --white: #ffffff;
+    --off-white: #f8f8f6;
+    --border: rgba(0,0,0,0.08);
+    --green-text: #27500A;
+    --green-dark: #3B6D11;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--charcoal); -webkit-font-smoothing: antialiased; }
+  h1,h2,h3,h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(248,248,246,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 800; color: var(--charcoal); text-decoration: none; letter-spacing: -0.5px; }
+  .logo span { color: var(--lime); }
+  .logo-tag { font-size: 11px; font-weight: 700; background: var(--lime-light); color: var(--green-text); padding: 2px 8px; border-radius: 999px; margin-left: 8px; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a { font-size: 14px; color: #666; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-cta { background: var(--charcoal); color: var(--white) !important; padding: 8px 20px; border-radius: 999px; font-size: 13px !important; }
+
+  .hero { background: var(--charcoal); padding: 100px 2rem 80px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(109,191,46,0.10) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { max-width: 800px; margin: 0 auto; position: relative; }
+  .hero-badge { display: inline-block; background: var(--lime); color: var(--green-text); font-size: 11px; font-weight: 700; padding: 5px 14px; border-radius: 999px; margin-bottom: 1.5rem; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .hero h1 { font-size: clamp(36px, 5vw, 58px); font-weight: 800; color: var(--white); line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -1.5px; }
+  .hero h1 span { color: var(--lime); }
+  .hero-sub { font-size: 18px; color: var(--text-on-dark); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .btn-primary { background: var(--lime); color: var(--green-text); border: none; padding: 15px 32px; border-radius: 999px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .btn-primary:hover { background: #7fd43a; transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--lime); border: 2px solid var(--lime); padding: 13px 32px; border-radius: 999px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .btn-ghost:hover { background: rgba(109,191,46,0.08); }
+  .hero-note { font-size: 12px; color: #5a625a; }
+
+  .stats-section { max-width: 1100px; margin: -40px auto 0; padding: 0 2rem; position: relative; z-index: 10; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; font-weight: 800; color: var(--green-dark); }
+  .stat-label { font-size: 12px; color: #888; margin-top: 4px; line-height: 1.4; }
+
+  .section { max-width: 1100px; margin: 0 auto; padding: 80px 2rem; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime-dark); margin-bottom: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--charcoal); line-height: 1.15; margin-bottom: 0.8rem; letter-spacing: -1px; }
+  .section-sub { font-size: 16px; color: #666; max-width: 500px; line-height: 1.7; font-weight: 300; }
+
+  .pain-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 3rem; }
+  .pain-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; transition: transform 0.2s; }
+  .pain-card:hover { transform: translateY(-3px); }
+  .pain-icon { width: 44px; height: 44px; background: var(--charcoal); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px; }
+  .pain-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 0.4rem; }
+  .pain-desc { font-size: 13px; color: #666; line-height: 1.6; font-weight: 300; }
+
+  .how-dark { background: var(--charcoal); padding: 80px 2rem; }
+  .how-inner { max-width: 1100px; margin: 0 auto; }
+  .how-inner .section-title { color: var(--white); }
+  .how-inner .section-sub { color: var(--text-on-dark); }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 3rem; }
+  .step-card { background: var(--charcoal-2); border: 1px solid var(--charcoal-3); border-radius: 20px; padding: 2rem; }
+  .step-num { width: 40px; height: 40px; background: var(--lime); color: var(--green-text); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; margin-bottom: 1.2rem; }
+  .step-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; }
+  .step-desc { font-size: 14px; color: var(--text-on-dark); line-height: 1.7; font-weight: 300; }
+
+  .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 3rem; }
+  .benefit-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 1.5rem; transition: transform 0.2s; }
+  .benefit-card:hover { transform: translateY(-3px); }
+  .benefit-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+  .benefit-tag { font-size: 10px; font-weight: 700; background: var(--lime-light); color: var(--green-text); padding: 2px 7px; border-radius: 999px; font-family: 'Plus Jakarta Sans', sans-serif; text-transform: uppercase; }
+  .benefit-desc { font-size: 13px; color: #666; line-height: 1.6; font-weight: 300; }
+
+  .math-section { background: var(--charcoal); padding: 80px 2rem; }
+  .math-inner { max-width: 700px; margin: 0 auto; }
+  .math-inner .section-title { color: var(--white); text-align: center; }
+  .math-inner .section-sub { color: var(--text-on-dark); text-align: center; margin: 0 auto 2rem; }
+  .math-box { background: var(--charcoal-2); border: 1px solid var(--charcoal-3); border-radius: 20px; padding: 2rem; }
+  .math-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--lime); margin-bottom: 1.2rem; text-align: center; text-transform: uppercase; letter-spacing: 0.06em; }
+  .math-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--charcoal-3); }
+  .math-row:last-child { border-bottom: none; padding-top: 16px; }
+  .math-label { font-size: 14px; color: var(--text-on-dark); }
+  .math-val { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 700; color: var(--white); }
+  .math-val.green { color: var(--lime); }
+  .math-note { font-size: 13px; color: var(--text-on-dark); text-align: center; margin-top: 1.2rem; line-height: 1.6; font-style: italic; }
+
+  .signup-section { background: var(--lime); padding: 80px 2rem; }
+  .signup-inner { max-width: 680px; margin: 0 auto; }
+  .signup-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--green-text); margin-bottom: 0.8rem; letter-spacing: -1px; text-align: center; }
+  .signup-sub { font-size: 16px; color: var(--green-dark); margin-bottom: 2rem; font-weight: 300; text-align: center; }
+  .signup-form { background: var(--white); border-radius: 20px; padding: 2rem; display: flex; flex-direction: column; gap: 12px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .signup-form input, .signup-form select { padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e8e8e8; font-size: 14px; width: 100%; background: var(--white); color: var(--charcoal); outline: none; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; }
+  .signup-form input:focus, .signup-form select:focus { border-color: var(--lime); }
+  .signup-btn { background: var(--charcoal); color: var(--white); border: none; padding: 14px; border-radius: 999px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.2s; }
+  .signup-btn:hover { background: #333; }
+  .signup-note { font-size: 12px; color: #aaa; text-align: center; }
+  .signup-success { display: none; background: var(--lime-light); border-radius: 16px; padding: 2rem; text-align: center; }
+  .signup-success-icon { width: 56px; height: 56px; background: var(--lime); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 24px; color: var(--green-text); font-weight: 700; }
+  .signup-success-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--green-text); margin-bottom: 0.5rem; }
+  .signup-success-sub { font-size: 14px; color: var(--green-dark); line-height: 1.6; }
+
+  .crosslink-bar { background: var(--charcoal-2); border-top: 1px solid var(--charcoal-3); padding: 20px 2rem; text-align: center; }
+  .crosslink-bar p { font-size: 14px; color: var(--text-on-dark); }
+  .crosslink-bar a { color: var(--lime); font-weight: 700; text-decoration: none; margin-left: 6px; }
+  .crosslink-bar a:hover { text-decoration: underline; }
+
+  footer { background: var(--charcoal); padding: 40px 2rem; text-align: center; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 0.8rem; }
+  .footer-logo span { color: var(--lime); }
+  .footer-links { display: flex; gap: 2rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: var(--text-on-dark); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--lime); }
+  .footer-copy { font-size: 12px; color: #444; }
+
+  @media(max-width: 768px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .pain-grid, .benefits-grid, .steps-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 38px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">shed<span>less</span> <span class="logo-tag">For salons</span></a>
+    <div class="nav-links">
+      <a href="#why">Why join</a>
+      <a href="#how">How it works</a>
+      <a href="#math">The numbers</a>
+      <a href="/" style="color:#3B6D11;font-weight:600;">For pet owners</a>
+      <a href="#signup" class="nav-cta">Apply now</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Now onboarding LA salons</div>
+    <h1>Fill your empty chairs.<br><span>Zero marketing spend.</span></h1>
+    <p class="hero-sub">Shedless sends you guaranteed monthly bookings for your slow slots. You groom. We handle everything else.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Apply to join</button>
+      <button class="btn-ghost" onclick="document.getElementById('math').scrollIntoView({behavior:'smooth'})">See the numbers</button>
+    </div>
+    <p class="hero-note">Free to join &nbsp;·&nbsp; You set your own capacity &nbsp;·&nbsp; Cancel anytime</p>
+  </div>
+</section>
+
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">$0</div><div class="stat-label">cost to join Shedless network</div></div>
+    <div class="stat-card"><div class="stat-num">$200–400</div><div class="stat-label">avg monthly salon ad spend wasted</div></div>
+    <div class="stat-card"><div class="stat-num">20+</div><div class="stat-label">guaranteed monthly slots available</div></div>
+  </div>
+</div>
+
+<section class="section" id="why">
+  <div class="section-label">The problem</div>
+  <h2 class="section-title">Sound familiar?</h2>
+  <p class="section-sub">These are the problems every LA salon owner tells us about</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-icon">🪑</div>
+      <div>
+        <div class="pain-title">Empty chairs on slow days</div>
+        <p class="pain-desc">Tuesday mornings, mid-week afternoons — dead slots that earn you nothing no matter how good your team is.</p>
+      </div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">📣</div>
+      <div>
+        <div class="pain-title">Marketing that doesn't convert</div>
+        <p class="pain-desc">Spending $200-400/month on Google and Yelp with no guarantee a single customer walks through the door.</p>
+      </div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">📅</div>
+      <div>
+        <div class="pain-title">No-shows killing your schedule</div>
+        <p class="pain-desc">A blocked slot that never showed up is revenue you can never get back. Subscription customers don't no-show — they've paid for the month.</p>
+      </div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">📊</div>
+      <div>
+        <div class="pain-title">Unpredictable monthly revenue</div>
+        <p class="pain-desc">Some months are great, some are slow. No way to plan or invest when you can't predict what's coming in next month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-dark" id="how">
+  <div class="how-inner">
+    <div class="section-label" style="color:var(--lime);">How it works</div>
+    <h2 class="section-title">Simple. Low-commitment.<br>Built around your schedule.</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title">You set your slots</div>
+        <p class="step-desc">Tell us how many subscription bookings you want per month — 5, 10, 20. You're always in control. Change it any time.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">We send you customers</div>
+        <p class="step-desc">Shedless subscribers in your area book your available slots. You get notified instantly. They show up — they've already paid for the month.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">You groom, we pay</div>
+        <p class="step-desc">Customer shows up, you groom, we transfer payment directly to you. No chasing invoices. No awkward checkout. Just clean, predictable revenue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">What you get</div>
+  <h2 class="section-title">More than just bookings</h2>
+  <p class="section-sub">A full partner toolkit included at no cost</p>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-title">Guaranteed monthly bookings <span class="benefit-tag">Free</span></div>
+      <p class="benefit-desc">Subscription customers commit monthly. They show up because their membership depends on it. No-show rate drops dramatically vs walk-ins.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-title">Booking software + dashboard <span class="benefit-tag">Free</span></div>
+      <p class="benefit-desc">Manage all Shedless bookings, client profiles, and your schedule from one clean dashboard. SMS reminders sent automatically to every client.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-title">Salon profile + reviews <span class="benefit-tag">Free</span></div>
+      <p class="benefit-desc">A dedicated Shedless profile with verified reviews drives organic discovery — even outside the subscription network. Free marketing for your salon.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-title">Loyal repeat customers</div>
+      <p class="benefit-desc">Subscribers return every single month without you lifting a finger. The best kind of customer — committed, predictable, and already paid.</p>
+    </div>
+  </div>
+</section>
+
+<section class="math-section" id="math">
+  <div class="math-inner">
+    <div class="section-label" style="color:var(--lime);text-align:center;">The numbers</div>
+    <h2 class="section-title">The math makes sense</h2>
+    <p class="section-sub">Here's what 10 Shedless slots per month looks like for your salon</p>
+    <div class="math-box">
+      <div class="math-title">10 subscription slots/month — slow day scenario</div>
+      <div class="math-row"><span class="math-label">Revenue per Shedless slot</span><span class="math-val">$45–50</span></div>
+      <div class="math-row"><span class="math-label">Your marketing cost per customer</span><span class="math-val green">$0</span></div>
+      <div class="math-row"><span class="math-label">No-show risk</span><span class="math-val green">Very low</span></div>
+      <div class="math-row"><span class="math-label">What these slots would otherwise earn</span><span class="math-val" style="color:#a0a8a0;">$0</span></div>
+      <div class="math-row"><span class="math-label">Monthly revenue from 10 slots</span><span class="math-val green">$450–$500 guaranteed</span></div>
+    </div>
+    <p class="math-note">These are your dead slots — Tuesday mornings, slow Wednesdays. $45 for an empty chair beats $0 every time. And your regular walk-in customers are completely unaffected.</p>
+  </div>
+</section>
+
+<section class="signup-section" id="signup">
+  <div class="signup-inner">
+    <h2 class="signup-title">Apply to join the Shedless network</h2>
+    <p class="signup-sub">Free for the first 3 months. We'll be in touch within 24 hours.</p>
+    <div class="signup-form" id="signupForm">
+      <div class="form-row">
+        <input type="text" id="salonName" placeholder="Salon name" />
+        <input type="text" id="ownerName" placeholder="Your name" />
+      </div>
+      <div class="form-row">
+        <input type="email" id="ownerEmail" placeholder="Email address" />
+        <input type="tel" id="ownerPhone" placeholder="Phone number" />
+      </div>
+      <input type="text" id="salonArea" placeholder="Neighbourhood / area in LA" />
+      <select id="salonSize">
+        <option value="" disabled selected>How many groomers do you have?</option>
+        <option>Just me (solo)</option>
+        <option>2–3 groomers</option>
+        <option>4–6 groomers</option>
+        <option>7+ groomers</option>
+      </select>
+      <button class="signup-btn" onclick="handleSignup()">Submit application</button>
+      <p class="signup-note">No contracts. No setup fees. Cancel anytime.</p>
+    </div>
+    <div class="signup-success" id="signupSuccess">
+      <div class="signup-success-icon">✓</div>
+      <div class="signup-success-title">Application received!</div>
+      <p class="signup-success-sub">We'll reach out within 24 hours to walk you through onboarding and answer any questions. Welcome to the Shedless network.</p>
+    </div>
+  </div>
+</section>
+
+<div class="crosslink-bar">
+  <p>Looking to book grooming for your dog? <a href="/">See Shedless membership plans →</a></p>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">shed<span>less</span></div>
+    <div class="footer-links">
+      <a href="/">For pet owners</a>
+      <a href="#why">Why join</a>
+      <a href="#how">How it works</a>
+      <a href="mailto:partners@tryshedless.com">partners@tryshedless.com</a>
+    </div>
+    <p class="footer-copy">© 2026 Shedless · Los Angeles, CA · All rights reserved</p>
+  </div>
+</footer>
+
+<script>
+  function handleSignup() {
+    const salon = document.getElementById('salonName').value.trim();
+    const email = document.getElementById('ownerEmail').value.trim();
+    const phone = document.getElementById('ownerPhone').value.trim();
+    let valid = true;
+    if (!salon) { document.getElementById('salonName').style.borderColor = '#E24B4A'; valid = false; }
+    if (!email || !email.includes('@')) { document.getElementById('ownerEmail').style.borderColor = '#E24B4A'; valid = false; }
+    if (!phone) { document.getElementById('ownerPhone').style.borderColor = '#E24B4A'; valid = false; }
+    if (!valid) return;
+    document.getElementById('signupForm').style.display = 'none';
+    document.getElementById('signupSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shedless — The Grooming Membership for LA Dog Owners</title>
+<meta name="description" content="One monthly membership. Book your dog's grooming at any Shedless salon in LA. No surprise bills. No hassle. Just a fresh pup."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --lime: #6DBF2E;
+    --lime-dark: #4a9c1a;
+    --lime-light: #EAF3DE;
+    --charcoal: #1a1f1a;
+    --charcoal-2: #2a2f2a;
+    --charcoal-3: #3a3f3a;
+    --text-on-dark: #a0a8a0;
+    --white: #ffffff;
+    --off-white: #f8f8f6;
+    --border: rgba(0,0,0,0.08);
+    --green-text: #27500A;
+    --green-dark: #3B6D11;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--charcoal); -webkit-font-smoothing: antialiased; }
+  h1,h2,h3,h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(248,248,246,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 800; color: var(--charcoal); text-decoration: none; letter-spacing: -0.5px; }
+  .logo span { color: var(--lime); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a { font-size: 14px; color: #666; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-cta { background: var(--charcoal); color: var(--white) !important; padding: 8px 20px; border-radius: 999px; font-size: 13px !important; }
+  .nav-cta:hover { background: #333 !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero { background: var(--charcoal); padding: 100px 2rem 80px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(109,191,46,0.12) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { max-width: 800px; margin: 0 auto; position: relative; }
+  .hero-city { display: inline-flex; align-items: center; gap: 6px; background: var(--charcoal-2); border: 1px solid var(--charcoal-3); border-radius: 999px; padding: 5px 14px; font-size: 12px; color: var(--text-on-dark); margin-bottom: 1.5rem; font-weight: 500; }
+  .hero-city::before { content: ''; width: 6px; height: 6px; background: var(--lime); border-radius: 50%; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero-badge { display: inline-block; background: var(--lime); color: var(--green-text); font-size: 11px; font-weight: 700; padding: 5px 14px; border-radius: 999px; margin-bottom: 1.5rem; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .hero h1 { font-size: clamp(38px, 5vw, 62px); font-weight: 800; color: var(--white); line-height: 1.0; margin-bottom: 1.5rem; letter-spacing: -1.5px; }
+  .hero h1 span { color: var(--lime); }
+  .hero-sub { font-size: 18px; color: var(--text-on-dark); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.7; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .btn-primary { background: var(--lime); color: var(--green-text); border: none; padding: 15px 32px; border-radius: 999px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.02em; }
+  .btn-primary:hover { background: #7fd43a; transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--lime); border: 2px solid var(--lime); padding: 13px 32px; border-radius: 999px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .btn-ghost:hover { background: rgba(109,191,46,0.08); transform: translateY(-1px); }
+  .hero-note { font-size: 12px; color: #5a625a; }
+  .intent-pill { display: inline-flex; align-items: center; gap: 7px; background: var(--charcoal-2); border: 1px solid var(--charcoal-3); border-radius: 999px; padding: 5px 14px; font-size: 12px; color: var(--text-on-dark); margin-top: 1rem; }
+
+  /* STATS */
+  .stats-section { max-width: 1100px; margin: -40px auto 0; padding: 0 2rem; position: relative; z-index: 10; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; font-weight: 800; color: var(--green-dark); }
+  .stat-label { font-size: 12px; color: #888; margin-top: 4px; line-height: 1.4; }
+
+  /* SECTIONS */
+  .section { max-width: 1100px; margin: 0 auto; padding: 80px 2rem; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime-dark); margin-bottom: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--charcoal); line-height: 1.15; margin-bottom: 0.8rem; letter-spacing: -1px; }
+  .section-sub { font-size: 16px; color: #666; max-width: 500px; line-height: 1.7; font-weight: 300; }
+
+  /* HOW IT WORKS */
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 3rem; }
+  .step-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: transform 0.2s; }
+  .step-card:hover { transform: translateY(-4px); }
+  .step-num { width: 40px; height: 40px; background: var(--charcoal); color: var(--lime); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; margin-bottom: 1.2rem; }
+  .step-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 0.6rem; }
+  .step-desc { font-size: 14px; color: #666; line-height: 1.7; font-weight: 300; }
+
+  /* PRICING */
+  .pricing-section { background: var(--charcoal); padding: 80px 2rem; }
+  .pricing-inner { max-width: 1100px; margin: 0 auto; }
+  .pricing-inner .section-title { color: var(--white); }
+  .pricing-inner .section-sub { color: var(--text-on-dark); }
+  .plans-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 3rem; }
+  .plan-card { background: var(--charcoal-2); border: 1px solid var(--charcoal-3); border-radius: 20px; padding: 2rem; position: relative; transition: transform 0.2s; }
+  .plan-card:hover { transform: translateY(-4px); }
+  .plan-card.pop { border: 2px solid var(--lime); }
+  .plan-card.elite { background: #111611; border: 2px solid var(--green-dark); }
+  .plan-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 999px; white-space: nowrap; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+  .badge-lime { background: var(--lime); color: var(--green-text); }
+  .badge-elite { background: var(--green-dark); color: #c0dd97; border: 1px solid #3B6D11; }
+  .plan-name { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-on-dark); margin-bottom: 0.4rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
+  .plan-price { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 42px; font-weight: 800; color: var(--white); letter-spacing: -1.5px; }
+  .plan-price span { font-size: 16px; font-weight: 400; color: var(--text-on-dark); letter-spacing: 0; }
+  .plan-save { font-size: 12px; color: var(--lime); font-weight: 500; margin: 4px 0 12px; }
+  .breed-pill { display: inline-block; background: rgba(109,191,46,0.12); color: #97c459; font-size: 11px; padding: 3px 10px; border-radius: 999px; margin-bottom: 1.2rem; border: 1px solid rgba(109,191,46,0.2); }
+  .plan-feats { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
+  .plan-feat { font-size: 13px; color: var(--text-on-dark); display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+  .feat-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+  .plan-btn { width: 100%; background: var(--lime); color: var(--green-text); border: none; padding: 13px; border-radius: 999px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .plan-btn:hover { background: #7fd43a; }
+  .multi-banner { margin-top: 16px; background: rgba(109,191,46,0.08); border: 2px solid rgba(109,191,46,0.3); border-radius: 20px; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .multi-tag { display: inline-block; background: var(--lime); color: var(--green-text); font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 999px; margin-bottom: 6px; font-family: 'Plus Jakarta Sans', sans-serif; text-transform: uppercase; letter-spacing: 0.06em; }
+  .multi-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+  .multi-sub { font-size: 13px; color: var(--text-on-dark); }
+  .multi-price-box { background: var(--charcoal-2); border-radius: 16px; padding: 1rem 1.5rem; text-align: center; flex-shrink: 0; border: 1px solid var(--charcoal-3); }
+  .multi-price-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 800; color: var(--lime); }
+  .multi-price-label { font-size: 11px; color: var(--text-on-dark); margin-top: 2px; }
+  .multi-price-save { font-size: 10px; color: var(--lime); font-weight: 600; margin-top: 3px; }
+
+  /* WAITLIST */
+  .waitlist-section { background: var(--lime); padding: 80px 2rem; text-align: center; }
+  .waitlist-inner { max-width: 600px; margin: 0 auto; }
+  .waitlist-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--green-text); margin-bottom: 0.8rem; letter-spacing: -1px; }
+  .waitlist-sub { font-size: 16px; color: var(--green-dark); margin-bottom: 2rem; font-weight: 300; }
+  .waitlist-form { display: flex; flex-direction: column; gap: 10px; max-width: 440px; margin: 0 auto 1rem; }
+  .waitlist-row { display: flex; gap: 8px; }
+  .waitlist-input { flex: 1; padding: 14px 20px; border-radius: 999px; border: none; font-size: 15px; background: var(--white); color: var(--charcoal); outline: none; font-family: 'DM Sans', sans-serif; width: 100%; }
+  .waitlist-input::placeholder { color: #aaa; }
+  .waitlist-input-wrap { position: relative; flex: 1; }
+  .waitlist-opt { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 10px; color: #aaa; background: #f0f0f0; padding: 2px 7px; border-radius: 4px; pointer-events: none; }
+  .waitlist-btn { background: var(--charcoal); color: var(--white); border: none; padding: 14px 24px; border-radius: 999px; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.2s; width: 100%; }
+  .waitlist-btn:hover { background: #333; }
+  .waitlist-note { font-size: 12px; color: var(--green-dark); }
+  .waitlist-success { display: none; background: var(--white); color: var(--green-dark); border-radius: 12px; padding: 12px 20px; font-size: 14px; font-weight: 500; margin-top: 12px; }
+
+  .crosslink-bar { background: var(--charcoal-2); border-top: 1px solid var(--charcoal-3); padding: 20px 2rem; text-align: center; }
+  .crosslink-bar p { font-size: 14px; color: var(--text-on-dark); }
+  .crosslink-bar a { color: var(--lime); font-weight: 700; text-decoration: none; margin-left: 6px; }
+  .crosslink-bar a:hover { text-decoration: underline; } background: var(--charcoal); padding: 40px 2rem; text-align: center; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 0.8rem; }
+  .footer-logo span { color: var(--lime); }
+  .footer-links { display: flex; gap: 2rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: var(--text-on-dark); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--lime); }
+  .footer-copy { font-size: 12px; color: #444; }
+
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+  .modal-overlay.open { display: flex; }
+  .modal-box { background: var(--white); border-radius: 24px; padding: 2rem; width: 100%; max-width: 420px; position: relative; max-height: 90vh; overflow-y: auto; }
+  .modal-close { position: absolute; top: 14px; right: 16px; background: #f0f0f0; border: none; cursor: pointer; width: 30px; height: 30px; border-radius: 50%; font-size: 16px; display: flex; align-items: center; justify-content: center; color: #666; transition: background 0.2s; }
+  .modal-close:hover { background: #e0e0e0; }
+  .modal-badge { display: inline-block; background: var(--lime-light); color: var(--green-text); font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 999px; margin-bottom: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif; text-transform: uppercase; letter-spacing: 0.06em; }
+  .modal-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--charcoal); margin-bottom: 0.4rem; }
+  .modal-sub { font-size: 13px; color: #777; margin-bottom: 1rem; line-height: 1.6; }
+  .modal-plan-row { background: var(--lime-light); border-radius: 10px; padding: 10px 14px; font-size: 13px; color: var(--green-text); margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
+  .modal-plan-row span:last-child { font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .mform { display: flex; flex-direction: column; gap: 10px; }
+  .mform input, .mform select { padding: 12px 14px; border-radius: 12px; border: 1.5px solid #e8e8e8; font-size: 14px; width: 100%; background: var(--white); color: var(--charcoal); outline: none; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; }
+  .mform input:focus, .mform select:focus { border-color: var(--lime); }
+  .input-wrap { position: relative; }
+  .opt-tag { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 10px; color: #aaa; background: #f5f5f5; padding: 2px 7px; border-radius: 4px; pointer-events: none; }
+  .extra-toggle { display: flex; align-items: center; gap: 10px; background: #f8f8f8; border: 1.5px solid #e8e8e8; border-radius: 12px; padding: 11px 14px; cursor: pointer; transition: border-color 0.2s; }
+  .extra-toggle:hover { border-color: var(--lime); }
+  .extra-toggle input[type=checkbox] { accent-color: var(--lime); width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
+  .extra-text { font-size: 13px; color: var(--charcoal); }
+  .extra-price-tag { font-size: 12px; color: var(--green-dark); font-weight: 700; margin-left: auto; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .total-row { background: var(--lime-light); border-radius: 12px; padding: 11px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .total-label { font-size: 13px; color: var(--green-text); font-weight: 600; }
+  .total-value { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--green-text); }
+  .submit-btn { width: 100%; background: var(--charcoal); color: var(--white); border: none; padding: 14px; border-radius: 999px; font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .submit-btn:hover { background: #333; }
+  .modal-note { font-size: 11px; color: #aaa; text-align: center; }
+  .modal-success { display: none; text-align: center; padding: 1rem 0; }
+  .success-circle { width: 56px; height: 56px; background: var(--lime-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 24px; color: var(--green-dark); }
+  .success-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--charcoal); margin-bottom: 0.5rem; }
+  .success-sub { font-size: 13px; color: #777; line-height: 1.6; }
+
+  /* RESPONSIVE */
+  @media(max-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(2,1fr); }
+    .steps-grid { grid-template-columns: 1fr; }
+    .plans-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 42px; }
+    .multi-banner { flex-direction: column; text-align: center; }
+    .waitlist-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">shed<span>less</span></a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#plans">Pricing</a>
+      <a href="/partners" style="color:#3B6D11;font-weight:600;">For salons</a>
+      <a href="#waitlist" class="nav-cta">Join waitlist</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-city">Launching in Los Angeles</div>
+    <div class="hero-badge">Now taking founding members</div>
+    <h1>One membership.<br><span>Every salon.</span></h1>
+    <p class="hero-sub">Subscribe monthly and book your dog's grooming at any Shedless salon in LA. No surprise bills. No hassle. Just a fresh pup.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">See plans</button>
+      <button class="btn-ghost" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join waitlist</button>
+    </div>
+    <p class="hero-note">No credit card required &nbsp;·&nbsp; Cancel anytime</p>
+    <div class="intent-pill">
+      <span style="width:6px;height:6px;background:var(--lime);border-radius:50%;animation:blink 2s infinite;flex-shrink:0;"></span>
+      <span id="intentCount">31</span> people have chosen a plan this week
+    </div>
+  </div>
+</section>
+
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">$85</div><div class="stat-label">avg per-visit cost in LA</div></div>
+    <div class="stat-card"><div class="stat-num">$1,700+</div><div class="stat-label">yearly spend, high-freq breeds</div></div>
+    <div class="stat-card"><div class="stat-num">$1,300+</div><div class="stat-label">avg spend for 2 dogs/year</div></div>
+    <div class="stat-card"><div class="stat-num">800K+</div><div class="stat-label">grooming-breed dogs in LA</div></div>
+  </div>
+</div>
+
+<section class="section" id="how">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">Three steps to a fresh dog,<br>every single month</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Pick your plan</div>
+      <p class="step-desc">Choose the plan that matches your dog's breed and grooming frequency. High-maintenance breeds like Bichons get their own Elite tier. Lock in your founding rate today.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Book any salon</div>
+      <p class="step-desc">Browse our network of vetted LA salons, pick a time that works, and book instantly. No phone calls, no waiting, no back and forth.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">Show up &amp; go</div>
+      <p class="step-desc">Drop off your pup and walk out. No paying at the counter. Your subscription covers everything. Just enjoy a fresh, happy dog.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section" id="plans">
+  <div class="pricing-inner">
+    <div class="section-label" style="color:var(--lime);">Pricing</div>
+    <h2 class="section-title">Simple, honest pricing</h2>
+    <p class="section-sub">Founding member rates — locked in for life when you sign up today</p>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name">Basic</div>
+        <div class="plan-price">$45<span>/mo</span></div>
+        <div class="plan-save">Save vs $85+ walk-in rate</div>
+        <div class="breed-pill">Great for: Goldens · Labs · Shepherds</div>
+        <div class="plan-feats">
+          <div class="plan-feat"><span class="feat-dot"></span>1 full groom per month</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Any Shedless salon in LA</div>
+          <div class="plan-feat"><span class="feat-dot"></span>SMS booking reminders</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Cancel anytime</div>
+        </div>
+        <button class="plan-btn" onclick="openModal('Basic','$45/mo',45)">Get started</button>
+      </div>
+      <div class="plan-card pop">
+        <div class="plan-badge badge-lime">Most popular</div>
+        <div class="plan-name">Standard</div>
+        <div class="plan-price">$59<span>/mo</span></div>
+        <div class="plan-save">Includes monthly bath</div>
+        <div class="breed-pill">Great for: Doodles · Spaniels · Samoyeds</div>
+        <div class="plan-feats">
+          <div class="plan-feat"><span class="feat-dot"></span>1 full groom per month</div>
+          <div class="plan-feat"><span class="feat-dot"></span>1 bath per month</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Priority booking</div>
+          <div class="plan-feat"><span class="feat-dot"></span>15% off add-ons</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Cancel anytime</div>
+        </div>
+        <button class="plan-btn" onclick="openModal('Standard','$59/mo',59)">Get started</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">$89<span>/mo</span></div>
+        <div class="plan-save">Unlimited baths included</div>
+        <div class="breed-pill">Great for: Pomskies · Huskies · Double coats</div>
+        <div class="plan-feats">
+          <div class="plan-feat"><span class="feat-dot"></span>1 full groom per month</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Unlimited baths</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Priority booking</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Free add-ons included</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Cancel anytime</div>
+        </div>
+        <button class="plan-btn" onclick="openModal('Premium','$89/mo',89)">Get started</button>
+      </div>
+      <div class="plan-card elite">
+        <div class="plan-badge badge-elite">High-frequency breeds</div>
+        <div class="plan-name">Elite</div>
+        <div class="plan-price">$119<span>/mo</span></div>
+        <div class="plan-save">Save $800+/year vs walk-in rates</div>
+        <div class="breed-pill">Built for: Bichons · Poodles · Shih Tzus · Maltese</div>
+        <div class="plan-feats">
+          <div class="plan-feat"><span class="feat-dot"></span>Up to 3 grooms per month</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Unlimited baths</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Guaranteed weekly slots</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Same-day booking</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Free add-ons + nail trims</div>
+          <div class="plan-feat"><span class="feat-dot"></span>Dedicated salon match</div>
+        </div>
+        <button class="plan-btn" onclick="openModal('Elite','$119/mo',119)">Get started</button>
+      </div>
+    </div>
+    <div class="multi-banner">
+      <div>
+        <div class="multi-tag">Multi-dog household?</div>
+        <div class="multi-title">Add a second dog for $35/mo</div>
+        <div class="multi-sub">Two dogs covered, one simple membership. Save $10/month vs two separate plans.</div>
+      </div>
+      <div class="multi-price-box">
+        <div class="multi-price-num">$35</div>
+        <div class="multi-price-label">per extra dog/mo</div>
+        <div class="multi-price-save">Save $10/mo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="waitlist-section" id="waitlist">
+  <div class="waitlist-inner">
+    <h2 class="waitlist-title">Get early access in LA</h2>
+    <p class="waitlist-sub">Join the waitlist and be first when Shedless launches in your neighbourhood</p>
+    <div class="waitlist-form">
+      <div class="waitlist-row">
+        <input type="text" id="waitlistName" class="waitlist-input" placeholder="Your name" />
+        <input type="email" id="waitlistEmail" class="waitlist-input" placeholder="Email address" />
+      </div>
+      <div style="position:relative;">
+        <input type="tel" id="waitlistPhone" class="waitlist-input" placeholder="Phone number" style="padding-right:80px;" />
+        <span class="waitlist-opt">Optional</span>
+      </div>
+      <button class="waitlist-btn" onclick="handleWaitlist()">Join waitlist</button>
+    </div>
+    <div class="waitlist-success" id="waitlistSuccess">You're on the list! We'll be in touch when Shedless launches near you.</div>
+    <p class="waitlist-note">No spam. Just a launch notification when we go live in your area.</p>
+  </div>
+</section>
+
+<div class="crosslink-bar">
+  <p>Own a pet salon in LA? <a href="/partners">Join the Shedless network and get guaranteed monthly bookings →</a></p>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">shed<span>less</span></div>
+    <div class="footer-links">
+      <a href="#how">How it works</a>
+      <a href="#plans">Pricing</a>
+      <a href="/partners">Salon partners</a>
+      <a href="mailto:hello@tryshedless.com">hello@tryshedless.com</a>
+    </div>
+    <p class="footer-copy">© 2026 Shedless · Los Angeles, CA · All rights reserved</p>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <div id="modalForm">
+      <div class="modal-badge">Early access</div>
+      <h3 class="modal-title">You're almost in</h3>
+      <p class="modal-sub">We're onboarding our first LA salons right now. Lock in your founding rate — no payment taken today. We'll reach out the moment we go live in your area.</p>
+      <div class="modal-plan-row">
+        <span>Selected plan</span>
+        <span id="modalPlanLabel">Basic — $45/mo</span>
+      </div>
+      <div class="mform">
+        <input type="text" id="mName" placeholder="Your name" />
+        <input type="email" id="mEmail" placeholder="Email address" />
+        <div class="input-wrap">
+          <input type="tel" id="mPhone" placeholder="Phone number" style="padding-right:72px;" />
+          <span class="opt-tag">Optional</span>
+        </div>
+        <input type="text" id="mZip" placeholder="Neighbourhood / zip code in LA" />
+        <select id="mBreed">
+          <option value="" disabled selected>Dog breed</option>
+          <option>Golden Retriever</option>
+          <option>Goldendoodle</option>
+          <option>Labradoodle</option>
+          <option>Labrador Retriever</option>
+          <option>Pomsky</option>
+          <option>Bichon Frise</option>
+          <option>Poodle</option>
+          <option>Shih Tzu</option>
+          <option>Maltese</option>
+          <option>Havanese</option>
+          <option>Samoyed</option>
+          <option>Springer Spaniel</option>
+          <option>Scottish Terrier</option>
+          <option>French Bulldog</option>
+          <option>Other</option>
+        </select>
+        <label class="extra-toggle">
+          <input type="checkbox" id="mExtra" onchange="updateTotal()" />
+          <span class="extra-text">I have a second dog — add for $35/mo</span>
+          <span class="extra-price-tag">+$35/mo</span>
+        </label>
+        <div class="total-row">
+          <span class="total-label">Total per month</span>
+          <span class="total-value" id="mTotal">$45/mo</span>
+        </div>
+        <button class="submit-btn" onclick="submitModal()">Lock in my founding rate</button>
+        <p class="modal-note">No payment taken now. We'll reach out when live in your area.</p>
+      </div>
+    </div>
+    <div class="modal-success" id="modalSuccess">
+      <div class="success-circle">✓</div>
+      <h3 class="success-title">You're locked in!</h3>
+      <p class="success-sub">We've saved your spot at the founding member rate. We'll reach out as soon as Shedless launches in your neighbourhood — usually within 2–3 weeks.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  let basePrice = 45;
+  let intentCount = 31;
+
+  function openModal(plan, price, num) {
+    basePrice = num;
+    document.getElementById('modalPlanLabel').textContent = plan + ' — ' + price;
+    document.getElementById('mExtra').checked = false;
+    document.getElementById('mTotal').textContent = '$' + num + '/mo';
+    document.getElementById('modalForm').style.display = 'block';
+    document.getElementById('modalSuccess').style.display = 'none';
+    ['mName','mEmail','mPhone','mZip'].forEach(id => document.getElementById(id).style.borderColor = '');
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function updateTotal() {
+    const extra = document.getElementById('mExtra').checked ? 35 : 0;
+    document.getElementById('mTotal').textContent = '$' + (basePrice + extra) + '/mo';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function submitModal() {
+    const name = document.getElementById('mName').value.trim();
+    const email = document.getElementById('mEmail').value.trim();
+    const zip = document.getElementById('mZip').value.trim();
+    let valid = true;
+    if (!name) { document.getElementById('mName').style.borderColor = '#E24B4A'; valid = false; }
+    if (!email || !email.includes('@')) { document.getElementById('mEmail').style.borderColor = '#E24B4A'; valid = false; }
+    if (!zip) { document.getElementById('mZip').style.borderColor = '#E24B4A'; valid = false; }
+    if (!valid) return;
+    intentCount++;
+    document.getElementById('intentCount').textContent = intentCount;
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalSuccess').style.display = 'block';
+  }
+
+  function handleWaitlist() {
+    const name = document.getElementById('waitlistName').value.trim();
+    const input = document.getElementById('waitlistEmail');
+    const success = document.getElementById('waitlistSuccess');
+    const email = input.value.trim();
+    let valid = true;
+    if (!name) { document.getElementById('waitlistName').style.borderColor = '#E24B4A'; valid = false; }
+    if (!email || !email.includes('@')) { input.style.borderColor = '#E24B4A'; valid = false; }
+    if (!valid) { input.focus(); return; }
+    document.getElementById('waitlistName').value = '';
+    input.value = '';
+    document.getElementById('waitlistPhone').value = '';
+    success.style.display = 'block';
+  }
+</script>
+</body>
+</html>
